@@ -1,6 +1,7 @@
 #!/bin/bash
 
 build(){
+	mkdir out
 	echo "copying images files"
 	cp -rf src/{images,bib} out/
 	convutf8
