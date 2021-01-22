@@ -1,0 +1,40 @@
+#!/bin/bash
+
+build(){
+	echo "copying images files"
+	cp -rf src/{images,bib} out/
+	convutf8
+}
+
+clean(){
+	echo "cleaning files"
+	rm -rf out
+	mkdir out
+}
+
+lint(){
+	echo "checking for latex errors"
+	echo "\t$(chktex -I out/entrypoint.tex)"
+}
+
+convutf8(){
+	echo "converting to utf-8 compliant"
+	ENCODING="$(file --mime-encoding src/entrypoint.tex | cut -d' ' -f2)"
+	echo "\tsrc/entrypoint.tex $ENCODING -> out/entrypoint.tex UTF-8"
+	iconv --from-code=$ENCODING --to-code=UTF-8 src/entrypoint.tex > out/entrypoint.tex	
+
+	mkdir out/sections
+	for section in $(ls src/sections/*.tex)
+	do
+		ENCODING="$(file --mime-encoding $section | cut -d' ' -f2)"
+		NAME=$(basename $section)
+		echo "\t$section $ENCODING -> out/sections/$NAME UTF-8"
+		iconv --from-code=$ENCODING --to-code=UTF-8 $section > out/sections/$NAME
+	done
+}
+
+create(){
+	echo "creating pdf"
+	pdflatex -halt-on-error -output-directory out out/entrypoint.tex
+	cp out/entrypoint.pdf .
+}
