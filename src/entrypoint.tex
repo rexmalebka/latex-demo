@@ -8,8 +8,8 @@
 \begin{document}
 \maketitle
 
-\foreach \i in {0, ...,99} {%
-    \edef\FileName{sections/sec\i}%     The % here are necessary to eliminate any
+\foreach \i in {0, ...,99} {%	
+    \edef\FileName{./sections/sec\i.tex}%     The % here are necessary to eliminate any
     \IfFileExists{\FileName}{%  spurious spaces that may get inserted
        \input{\FileName}%       at these points
     }
