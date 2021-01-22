@@ -9,10 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: linting latex
-        uses: j2kun/chktex-action@1.0.3
+        #      - name: linting latex
+        #uses: j2kun/chktex-action@1.0.3
       - name: prepare intermediate files
-        if: succeeded() || failed()
         run: |
           source automation
           build
