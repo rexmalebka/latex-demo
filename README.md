@@ -30,10 +30,17 @@ demo of latex
 - `src/` source files for latex
 - `src/entrypoint.tex` entrypoint file
 - `src/images/` images directory  
-- `src/sections` sections of latex files
-- `src/bib/` bib files directory
+- `src/sections/` sections of latex files must be consecutive `src/sections/sec1.tex, src/sections/sec2.tex, src/sections/sec3.tex, ..., src/sections/secn.tex`
+- `src/bib/` bib files directory 
 
-## how to
+## colaboration
+
+1.- create a pull request in the format `usename/change`
+2.- wait for linting checks, if fails, check the logs in `actions` sections
+3.- merge the changes 
+4.- commit the automation PR for rendering the final pdf, if fails, check the logs in `actions` section 
+
+## how to run it locally
 
 1.- clone this repo
 > git clone https://github.com/rexmalebka/latex-demo.git
