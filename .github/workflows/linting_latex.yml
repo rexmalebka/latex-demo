@@ -13,7 +13,8 @@ jobs:
     steps:
       - name: skip
         if: contains( github.head_ref, 'automation')
-        runs: true
+        runs: |
+          true
       - name: checkout repo
         if: contains( github.head_ref, 'automation') == false
         uses: actions/checkout@v2
