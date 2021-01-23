@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
-        if: contains(['fix','feature','automation'], github.head_ref) == false
+        if: contains( github.head_ref, 'automation') == false
         uses: actions/checkout@v2
       - name: linting latex
-        if: contains(['fix','feature','automation'], github.head_ref) == false
+        if: contains( github.head_ref, 'automation') == false
         uses: j2kun/chktex-action@1.0.3
