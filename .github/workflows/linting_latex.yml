@@ -7,22 +7,17 @@ on:
       - "src/**"
       - "entrypoint.pdf"
 
-if: contains( github.head_ref, 'automation') == false
-jobs:
-  latex_linting_skip:
-    runs-on: ubuntu-latest
-    steps:
-      - name: skip
-        run: true
-
-if: contains( github.head_ref, 'automation') == false
 jobs:
   latex_linting:
     runs-on: ubuntu-latest
     steps:
+      - name: skip
+        run: true
       - name: checkout repo
+        if: contains( github.head_ref, 'automation') == false
         uses: actions/checkout@v2
       - name: cleaning
+        if: contains( github.head_ref, 'automation') == false
         run: |
           source automation
           clean
