@@ -35,10 +35,10 @@ demo of latex
 
 ## colaboration
 
-1.- create a pull request in the format `usename/change`
-2.- wait for linting checks, if fails, check the logs in `actions` sections
-3.- merge the changes 
-4.- commit the automation PR for rendering the final pdf, if fails, check the logs in `actions` section 
+1. create a pull request in the format `usename/change`
+2. wait for linting checks, if fails, check the logs in `actions` sections
+3. merge the changes 
+4. commit the automation PR for rendering the final pdf, if fails, check the logs in `actions` section 
 
 ## how to run it locally
 
