@@ -3,9 +3,6 @@ name: Linting Latex
 on:
   pull_request:
     branches: [ main ]
-    paths:
-      - "src/**"
-      - "entrypoint.pdf"
 
 jobs:
   latex_linting:
