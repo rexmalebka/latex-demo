@@ -1,0 +1,17 @@
+name: Linting Latex
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - "src/**"
+jobs:
+  latex_linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        if: contains(['fix','feeature', github.head_ref) == false
+        uses: actions/checkout@v2
+      - name: linting latex
+        if: contains(['fix','feeature', github.head_ref) == false
+        uses: j2kun/chktex-action@1.0.3

@@ -3,36 +3,51 @@ name: Rendering latex
 on:
   push:
     branches: [main]
+    paths:
+      - "src/**"
 
 jobs:
   latex_rendering:
     runs-on: ubuntu-latest
     steps:
-      - name: check refs
+      - name: checkout
+        if: contains(['fix','feature','automation'], github.head_ref) == false
+        uses: actions/checkout@v2
+      - name: prepare intermediate files
+        if: contains(['fix','feature','automation'], github.head_ref) == false
         run: |
-          echo ${{ github.head_ref }} asdfsdf
-          #- uses: actions/checkout@v2
-          #- name: linting latex
-          #uses: j2kun/chktex-action@1.0.3
-    
-          #- name: prepare intermediate files
-          #run: |
-          #source automation
-          #build
-          #- name: rendering pdf
-          #uses: xu-cheng/latex-action@v2
-          #with:
-          #working_directory: "./out/"
-          #root_file: |
-          #  entrypoint.tex
-          #- name: pull-request
-          #uses: repo-sync/pull-request@v2
-          #with:
-          #destination_branch: "main"
-          #github_token: ${{ secrets.GITHUB_TOKEN }}
-          #- name: clean files
-          #run: |
-          #cp out/entrypoint.pdf .
-          #source automation
-          #clean
-          #git status
+          source automation
+          build
+      - name: rendering pdf
+        uses: xu-cheng/latex-action@v2
+        if: contains(['fix','feature','automation'], github.head_ref) == false
+        with:
+          working_directory: "./out/"
+          root_file: |
+            entrypoint.tex
+      - name: clean files
+        if: contains(['fix','feature','automation'], github.head_ref) == false
+        run: |
+          cp out/entrypoint.pdf .
+          source automation
+          clean
+            git status
+      - name: commit changes
+        if: contains(['fix','feature','automation'], github.head_ref) == false
+        run: |
+          git config --global user.name  'Github Action'
+          git config --global user.email 'action-bot@github.com'         
+          git checkout automation/latex
+          git commit -am "Automated rendering"
+          git push origin automation/latex
+      - name: pull requests
+        if: contains(['fix','feature','automation'], github.head_ref) == false
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: automation/latex
+          destination_branch: main
+          pr_title: "Latex rendering"
+          pr_body: ":robot: latex rendering automation"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
