@@ -1,7 +1,7 @@
 name: Linting Latex
 
 on:
-  pull:
+  pull_request:
     branches: [ main ]
     paths:
       - "src/**"
