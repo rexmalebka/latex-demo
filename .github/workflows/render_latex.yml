@@ -5,43 +5,39 @@ on:
     branches: [main]
     paths:
       - "src/**"
+    if: contains( github.head_ref, 'automation') == false
 
 jobs:
   latex_rendering:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        if: contains(['fix','feature','automation'], github.head_ref) == false
         uses: actions/checkout@v2
       - name: prepare intermediate files
-        if: contains(['fix','feature','automation'], github.head_ref) == false
         run: |
           source automation
           build
       - name: rendering pdf
         uses: xu-cheng/latex-action@v2
-        if: contains(['fix','feature','automation'], github.head_ref) == false
         with:
           working_directory: "./out/"
           root_file: |
             entrypoint.tex
       - name: clean files
-        if: contains(['fix','feature','automation'], github.head_ref) == false
         run: |
           cp out/entrypoint.pdf .
           source automation
           clean
             git status
       - name: commit changes
-        if: contains(['fix','feature','automation'], github.head_ref) == false
         run: |
           git config --global user.name  'Github Action'
           git config --global user.email 'action-bot@github.com'         
+          git fetch 
           git checkout automation/latex
           git commit -am "Automated rendering"
           git push origin automation/latex
       - name: pull requests
-        if: contains(['fix','feature','automation'], github.head_ref) == false
         uses: repo-sync/pull-request@v2
         with:
           source_branch: automation/latex
