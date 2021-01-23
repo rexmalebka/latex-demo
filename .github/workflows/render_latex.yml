@@ -1,31 +1,38 @@
-name: Render Latex Pdf
+name: Rendering latex
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   latex_rendering:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        #- name: linting latex
-        #uses: j2kun/chktex-action@1.0.3
-        #if: ${{ success() }} || ${{ failure() }}
-      - name: prepare intermediate files
+      - name: check refs
         run: |
-          source automation
-          build
-      - name: rendering pdf 
-        uses: xu-cheng/latex-action@v2
-        with:
-          working_directory: "${{ env.GITHUB_WORKSPACE}}/out/"
-          root_file: |
-            entrypoint.tex
-      - name: clean files
-        run: |
-          cp out/entrypoint.pdf .
-          source automation
-          clean
-          git status
-
+          echo ${{ github.head_ref }} asdfsdf
+          #- uses: actions/checkout@v2
+          #- name: linting latex
+          #uses: j2kun/chktex-action@1.0.3
+    
+          #- name: prepare intermediate files
+          #run: |
+          #source automation
+          #build
+          #- name: rendering pdf
+          #uses: xu-cheng/latex-action@v2
+          #with:
+          #working_directory: "./out/"
+          #root_file: |
+          #  entrypoint.tex
+          #- name: pull-request
+          #uses: repo-sync/pull-request@v2
+          #with:
+          #destination_branch: "main"
+          #github_token: ${{ secrets.GITHUB_TOKEN }}
+          #- name: clean files
+          #run: |
+          #cp out/entrypoint.pdf .
+          #source automation
+          #clean
+          #git status
