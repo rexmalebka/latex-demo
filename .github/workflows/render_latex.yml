@@ -33,6 +33,7 @@ jobs:
         run: |
           git config --global user.name  'Github Action'
           git config --global user.email 'action-bot@github.com'         
+          git fetch 
           git checkout automation/latex
           git commit -am "Automated rendering"
           git push origin automation/latex
