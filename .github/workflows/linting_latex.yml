@@ -1,0 +1,14 @@
+name: Linting Latex
+
+on:
+  pull:
+    branches: [ main ]
+    paths:
+      - "src/**"
+jobs:
+  latex_linting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: linting latex
+        uses: j2kun/chktex-action@1.0.3
