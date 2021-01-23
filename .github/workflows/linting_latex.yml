@@ -5,13 +5,12 @@ on:
     branches: [ main ]
     paths:
       - "src/**"
+    if: contains( github.head_ref, 'automation') == false
 jobs:
   latex_linting:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
-        if: contains( github.head_ref, 'automation') == false
         uses: actions/checkout@v2
       - name: linting latex
-        if: contains( github.head_ref, 'automation') == false
         uses: j2kun/chktex-action@1.0.3
