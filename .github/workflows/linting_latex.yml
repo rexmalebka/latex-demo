@@ -12,7 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: skip
-        if: contains( github.head_ref, 'automation')
         runs: |
           true
       - name: checkout repo
