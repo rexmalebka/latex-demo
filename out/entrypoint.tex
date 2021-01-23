@@ -8,7 +8,7 @@
 \begin{document}
 \maketitle
 
-\foreach \i in {0, ...,99} {% chktex 11 chktex 1  chktex 26	
+\foreach \i in {0, ..., 99} {% checktex ##
     \edef\FileName{./sections/sec\i.tex}%     The % here are necessary to eliminate any
     \IfFileExists{\FileName}{%  spurious spaces that may get inserted
        \input{\FileName}%       at these points
