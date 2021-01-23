@@ -5,7 +5,17 @@ on:
     branches: [ main ]
     paths:
       - "src/**"
-    if: contains( github.head_ref, 'automation') == false
+      - "entrypoint.pdf"
+
+if: contains( github.head_ref, 'automation') == false
+jobs:
+  latex_linting_skip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: skip
+        run: true
+
+if: contains( github.head_ref, 'automation') == false
 jobs:
   latex_linting:
     runs-on: ubuntu-latest
