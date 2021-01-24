@@ -1,4 +1,4 @@
-\documentclass[12pt,letterpaper,twocolumn]{book}
+\documentclass[12pt,letterpaper,onecolumn]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage{graphicx}
@@ -14,9 +14,9 @@
 \begin{document}
 \maketitle
 \tableofcontents
-	
+
 % lee las secciones desde una carpeta y los incluye en orden numérico
-\foreach \i in {0, ...,99} {% chktex 11 chktex 1  chktex 26	
+\foreach \i in {0, ...,99} {% chktex 11 chktex 1  chktex 26
     \edef\FileName{./sections/sec\i.tex}%     The % here are necessary to eliminate any
     \IfFileExists{\FileName}{%  spurious spaces that may get inserted
 \input{\FileName}%       at these points
@@ -25,7 +25,7 @@
 
 % lee los archivos bibs para las citas
 \xdef\bibfiles{}
-\foreach \i in {0, ...,99}{% chktex 11 chktex 1  chktex 26	
+\foreach \i in {0, ...,99}{% chktex 11 chktex 1  chktex 26
   \edef\FileName{./bib/bib\i}%     The % here are necessary to eliminate any
     \IfFileExists{\FileName.bib}{%  spurious spaces that may get inserted
 \xdef\bibfiles{\FileName,\bibfiles}%       at these points
@@ -37,4 +37,4 @@
 \bibliographystyle{apalike}%
 \bibliography{\bibfiles_}
 
-\end{document}	
+\end{document}
