@@ -1,21 +1,40 @@
 \documentclass[12pt,letterpaper,twocolumn]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
-\usepackage{tikz}
-\author{\input{sections/authors.tex}}
+\usepackage{tikz} % para iteraciones
+\usepackage{xstring}
+
+\author{\input{sections/authors.tex}} % importa autores desde un archivos
 \title{Assimilating Truculent Degeneration: Duck and/in the Alien}
-\graphicspath{ {./images/} }
+\graphicspath{ {./images/} } % path de imagenes
+
+
 \begin{document}
 \maketitle
+\tableofcontents
+	
+% lee las secciones desde una carpeta y los incluye en orden numérico
 \foreach \i in {0, ...,99} {% chktex 11 chktex 1  chktex 26	
     \edef\FileName{./sections/sec\i.tex}%     The % here are necessary to eliminate any
     \IfFileExists{\FileName}{%  spurious spaces that may get inserted
 \input{\FileName}%       at these points
     }
 }
-\end{document}
+
+% lee los archivos bibs para las citas
+\xdef\bibfiles{}
+\foreach \i in {0, ...,99}{% chktex 11 chktex 1  chktex 26	
+  \edef\FileName{./bib/bib\i}%     The % here are necessary to eliminate any
+    \IfFileExists{\FileName.bib}{%  spurious spaces that may get inserted
+\xdef\bibfiles{\FileName,\bibfiles}%       at these points
+    }
+}
+\StrGobbleRight{\bibfiles}{1}[\bibfiles_]
+
+% genera la bibliografía
+\bibliographystyle{apalike}%
+\bibliography{\bibfiles_}
+
+\end{document}	

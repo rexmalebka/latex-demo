@@ -37,5 +37,9 @@ convutf8(){
 create(){
 	echo "creating pdf"
 	pdflatex -halt-on-error -output-directory out out/entrypoint.tex
+	cd out
+	bibtex entrypoint
+	cd ..
+	pdflatex -halt-on-error -output-directory out out/entrypoint.tex
 	cp out/entrypoint.pdf .
 }

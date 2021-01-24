@@ -1,1 +1,18 @@
-section 4
+\chapter{Texto español}
+
+\section{ asdfsdfd }
+A poco que hayas enredado con lo explicado en el capítulo anterior te habrás dado cuenta de un problema importante: ¿dónde están nuestros acentos?, ¿por qué no sale la letra eñe?
+
+\LaTeX, tal cual, no entiende el español.
+
+Estrictamente, \LaTeX solo comprende el limitado juego de caracteres ASCII, sistema que no sabe nada de acentos ni de caracteres propios de otras lenguas aparte del inglés.
+
+Para poder generar todos estos símbolos, \LaTeX ofrece dos aproximaciones: una engorrosa y otra elegante.
+
+La engorrosa consiste en introducir comandos especiales cada vez que se necesita uno de esos símbolos. Por ejemplo, para escribir la frase «un camión trasladaría a todo el rebaño», deberíamos hacerlo así:
+
+Vete familiarizando con este tipo de usos de llaves y corchetes: las llaves se emplean en los comandos para facilitar argumentos obligatorios, mientras que los corchetes para los opcionales.
+
+Para poder utilizar los paquetes deben estar cargados en nuestro sistema. Por lo general, cualquier distribución incluye directamente los más comunes. Hay algunas que, si no detectan la presencia de un determinado paquete, tratan de conectarse a internet para descargarlo e instalarlo sin necesidad de que el usuario intervenga.
+
+Vamos a utilizar dos paquetes para realizar una preparación básica de nuestro documento: babel y inputenc.
